@@ -1,0 +1,46 @@
+import static java.lang.System.getenv
+
+buildscript {
+    apply from: "gradle/script/dependencies.gradle"
+
+    ext.getProperty = { String propertyName, String environmentVariable ->
+        return project.hasProperty(propertyName) && !project.property(propertyName).isEmpty() ?
+                project.property(propertyName) : getenv(environmentVariable)
+    }
+
+    repositories {
+        maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+        maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        google()
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_tools_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$navigation_plugin_version"
+        classpath "de.mannodermaus.gradle.plugins:android-junit5:$androidJunit5_version"
+    }
+
+    configurations.all {
+        resolutionStrategy {
+            force "net.sf.proguard:proguard-gradle:$proguard_version"
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        google()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

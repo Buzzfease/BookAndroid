@@ -1,0 +1,39 @@
+ext.getVersionNumber = {
+    def branchName = "git rev-parse --abbrev-ref HEAD".execute().text.trim()
+    return Integer.parseInt("git rev-list $branchName --count".execute().text.trim() ?: "1")
+}
+
+// Lib Version
+ext.version_name = "1.0.0"
+ext.version_code = 1
+
+// Android SDK
+ext.target_sdk_version = 31  // Android 12
+ext.compile_sdk_version = 31 // Android 12
+ext.min_sdk_version = 24     // Android 7
+ext.build_tools_version = '30.0.2'
+
+//Dependencies
+ext.gradle_tools_version = "4.1.1"
+ext.kotlinVersion = "1.4.32"
+ext.jacoco_version = "0.8.7"
+ext.androidJunit5_version = "1.7.1.1"
+ext.sonarqube_version = "2.8"
+ext.detekt_version = "1.17.1"
+ext.navigation_plugin_version = "2.3.5"
+ext.autodepend_version = "1.0.5"
+ext.proguard_version = "6.2.0"
+ext.kotlinCoroutinesVersion = "1.4.1"
+ext.appcompatVersion = "1.2.0"
+ext.liveDataKtxVersion = "2.3.0"
+ext.constraintLayoutVersion = "2.0.4"
+ext.daggerVersion = "2.35.1"
+ext.retrofitVersion = "2.9.0"
+ext.gsonVersion = "2.8.9"
+ext.navigationVersion = "2.3.5"
+ext.coreKtxVersion = "1.5.0"
+ext.okHttpVersion = "4.4.0"
+ext.junitVersion = "5.1.7"
+ext.mockitoVersion = "4.0.0"
+ext.androidxCoreTestingVersion = "2.1.0"
+ext.testCoroutinesVersion = "1.4.2"
