@@ -3,6 +3,10 @@ package com.buzz.bookandroid.network.repository
 import com.buzz.bookandroid.network.model.Book
 import com.buzz.bookandroid.network.wrapper.asContent
 
+/**
+ * repository class used for handle multiple retrofit services here(if you have)
+ * also use `asContent` for base error handle
+ */
 class BookAndroidRepository(
     private val bookAndroidApi: BookAndroidApi
 ) {

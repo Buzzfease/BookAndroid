@@ -6,6 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
 
+/**
+ * interface with suspend functions to use retrofit with Coroutine
+ */
 interface BookAndroidApi {
 
     @GET("/books/all")
