@@ -4,6 +4,7 @@ import com.buzz.bookandroid.common.arch.viewmodel.BaseViewModel
 import javax.inject.Inject
 
 internal class BookListViewModel @Inject constructor(
+    private val initialState: BookListState,
     private val model: BookListModel,
 ) : BaseViewModel<BookListAction, BookListState, BookListEvent>() {
 

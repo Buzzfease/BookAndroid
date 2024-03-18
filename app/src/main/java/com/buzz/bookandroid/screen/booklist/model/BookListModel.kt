@@ -1,7 +1,33 @@
 package com.buzz.bookandroid.screen.booklist.model
 
-internal interface BookListModel  {
-    suspend fun fetchBookList(): BookListState
-    suspend fun routeToDetail(id: String): BookListEvent
-    suspend fun routeToSearch(): BookListEvent
+import com.buzz.bookandroid.network.model.Book
+import com.buzz.bookandroid.network.repository.BookAndroidRepository
+import com.buzz.bookandroid.network.wrapper.Content
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.withContext
+
+internal class BookListModel(
+    private val repository: BookAndroidRepository,
+    private val dispatcher: CoroutineDispatcher,
+    private val reducer: BookListReducer,
+) {
+    suspend fun fetchPaymentListItems(): BookListState = withContext(dispatcher) {
+        val paymentListContent = repository.fetchBookList()
+        handleResponseData(paymentListContent)
+    }
+
+    private fun handleResponseData(bookListContent: Content<List<Book>>): BookListState {
+        return when (bookListContent) {
+            is Content.Data -> {
+                if (bookListContent.data.isEmpty()) {
+                    reducer.reduceEmptyList()
+                } else {
+                    reducer.reduceBookList(bookListContent.data)
+                }
+            }
+            is Content.Error -> {
+                reducer.reduceBookListNetworkError()
+            }
+        }
+    }
 }

@@ -3,7 +3,7 @@ package com.buzz.bookandroid.screen.booklist.di
 import dagger.Subcomponent
 
 @Subcomponent(modules = [BookListModule::class])
-internal interface BookListComponent {
+interface BookListComponent {
 
     @Subcomponent.Factory
     interface Factory {
