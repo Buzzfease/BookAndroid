@@ -4,6 +4,8 @@ import com.buzz.bookandroid.network.repository.BookAndroidApi
 import com.buzz.bookandroid.network.repository.BookAndroidRepository
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -48,5 +50,8 @@ class HttpModule {
     fun providesRepository(
         retrofitService: BookAndroidApi,
     ): BookAndroidRepository = BookAndroidRepository(retrofitService)
+
+    @Provides
+    fun providesCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
 }
