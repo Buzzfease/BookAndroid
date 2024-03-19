@@ -8,6 +8,11 @@ sealed class BookListAction : Action {
 
     object OnBookUpdated : BookListAction()
 
+    object OnBookInserted : BookListAction()
+
+    @Keep
+    object OnBookInsertMenuClick : BookListAction()
+
     @Keep
     data class OnBookItemClick(val id: String) : BookListAction()
 

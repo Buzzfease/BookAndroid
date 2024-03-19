@@ -46,10 +46,6 @@
             android:name="editPageParam"
             app:argType="com.buzz.bookandroid.common.wrapper.EditPageParamWrapper" />
 
-        <action
-            android:id="@+id/action_bookEditFragment_to_bookListFragment"
-            app:destination="@id/bookListFragment" />
-
     </fragment>
 
 </navigation>

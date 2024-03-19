@@ -10,7 +10,9 @@ internal class BookEditReducer @Inject constructor() {
         data: Book
     ): BookEditState = BookEditState.Data(dataSource = createBookDataSource(data))
 
-    fun reduceRouteToBookListEvent(): BookEditEvent = BookEditEvent.GoToBookListEvent
+    fun reduceUpdateSuccessEvent(): BookEditEvent = BookEditEvent.UpdateSuccessEvent
+
+    fun reduceInsertSuccessEvent(): BookEditEvent = BookEditEvent.InsertSuccessEvent
 
     fun reduceErrorBanner(errorMessage: String): BookEditEvent = BookEditEvent.ShowErrorBannerEvent(errorMessage)
 

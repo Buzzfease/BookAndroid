@@ -18,7 +18,7 @@ internal class BookEditModel(
     suspend fun updateBook(book: Book): BookEditEvent = withContext(dispatcher) {
         when (repository.updateBook(book)) {
             is Content.Data -> {
-                reducer.reduceRouteToBookListEvent()
+                reducer.reduceUpdateSuccessEvent()
             }
             is Content.Error -> {
                 reducer.reduceErrorBanner("update failed")
@@ -27,9 +27,9 @@ internal class BookEditModel(
     }
 
     suspend fun insertBook(book: Book): BookEditEvent = withContext(dispatcher) {
-        when (repository.updateBook(book)) {
+        when (repository.insertBook(book)) {
             is Content.Data -> {
-                reducer.reduceRouteToBookListEvent()
+                reducer.reduceInsertSuccessEvent()
             }
             is Content.Error -> {
                 reducer.reduceErrorBanner("insert failed")

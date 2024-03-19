@@ -8,8 +8,10 @@ import androidx.navigation.fragment.findNavController
 import com.buzz.bookandroid.R
 import com.buzz.bookandroid.common.arch.view.BaseFragment
 import com.buzz.bookandroid.common.extension.onNavigationResult
+import com.buzz.bookandroid.common.wrapper.EditPageParamWrapper
 import com.buzz.bookandroid.databinding.FragmentBookListBinding
 import com.buzz.bookandroid.di.AppComponentHolder
+import com.buzz.bookandroid.screen.bookedit.view.BookEditFragment.Companion.RESULT_INSERTED
 import com.buzz.bookandroid.screen.bookedit.view.BookEditFragment.Companion.RESULT_UPDATED
 import com.buzz.bookandroid.screen.booklist.model.BookListAction
 import com.buzz.bookandroid.screen.booklist.model.BookListEvent
@@ -45,6 +47,14 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
                     viewModel.doAction(BookListAction.LoadData)
                 }
             )
+            toolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.insertBook -> {
+                        viewModel.doAction(BookListAction.OnBookInsertMenuClick)
+                    }
+                }
+                false
+            }
         }
     }
 
@@ -71,8 +81,21 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
                         )
                     )
                 }
+                is BookListEvent.GoToInsertBookEvent -> {
+                    findNavController().navigate(
+                        BookListFragmentDirections.actionBookListFragmentToBookEditFragment(
+                            EditPageParamWrapper(
+                                isUpdate = false,
+                                it.book
+                            )
+                        )
+                    )
+                }
                 is BookListEvent.BookUpdated -> {
                     Toast.makeText(requireContext(), "update success!", Toast.LENGTH_SHORT).show()
+                }
+                is BookListEvent.BookInserted -> {
+                    Toast.makeText(requireContext(), "insert success!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -84,6 +107,15 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
         ) { done: Boolean ->
             if (done) {
                 viewModel.doAction(BookListAction.OnBookUpdated)
+            }
+        }
+
+        onNavigationResult(
+            R.id.bookListFragment,
+            RESULT_INSERTED
+        ) { done: Boolean ->
+            if (done) {
+                viewModel.doAction(BookListAction.OnBookInserted)
             }
         }
 

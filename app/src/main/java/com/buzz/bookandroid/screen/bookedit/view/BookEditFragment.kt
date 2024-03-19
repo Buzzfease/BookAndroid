@@ -9,11 +9,9 @@ import androidx.navigation.fragment.navArgs
 import com.buzz.bookandroid.R
 import com.buzz.bookandroid.common.arch.view.BaseFragment
 import com.buzz.bookandroid.common.extension.setNavigationResult
-import com.buzz.bookandroid.common.wrapper.EditPageParamWrapper
 import com.buzz.bookandroid.databinding.FragmentBookEditBinding
 import com.buzz.bookandroid.di.AppComponentHolder
 import com.buzz.bookandroid.network.model.Book
-import com.buzz.bookandroid.screen.bookdetail.view.BookDetailFragmentDirections
 import com.buzz.bookandroid.screen.bookedit.model.BookEditAction
 import com.buzz.bookandroid.screen.bookedit.model.BookEditEvent
 import com.buzz.bookandroid.screen.bookedit.model.BookEditState
@@ -85,11 +83,13 @@ internal class BookEditFragment : BaseFragment<FragmentBookEditBinding, BookEdit
         }
         viewModel.event.observe(viewLifecycleOwner) {
             when (it) {
-                is BookEditEvent.GoToBookListEvent -> {
+                is BookEditEvent.UpdateSuccessEvent -> {
                     setNavigationResult(R.id.bookListFragment, RESULT_UPDATED, true)
-                    findNavController().navigate(
-                        BookEditFragmentDirections.actionBookEditFragmentToBookListFragment()
-                    )
+                    findNavController().popBackStack(R.id.bookListFragment, false)
+                }
+                is BookEditEvent.InsertSuccessEvent -> {
+                    setNavigationResult(R.id.bookListFragment, RESULT_INSERTED, true)
+                    findNavController().popBackStack(R.id.bookListFragment, false)
                 }
                 is BookEditEvent.ShowErrorBannerEvent -> {
                     Toast.makeText(requireContext(), it.errorMessage, Toast.LENGTH_SHORT).show()
@@ -116,6 +116,7 @@ internal class BookEditFragment : BaseFragment<FragmentBookEditBinding, BookEdit
 
     companion object {
         const val RESULT_UPDATED = "RESULT_UPDATED"
+        const val RESULT_INSERTED = "RESULT_INSERTED"
     }
 
 }

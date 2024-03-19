@@ -20,6 +20,9 @@ internal class BookListReducer @Inject constructor() {
 
     fun reduceRouteToDetailEvent(id: String): BookListEvent = BookListEvent.GoToDetailEvent(id)
 
+    fun reduceRouteToInsertBookEvent(book: Book): BookListEvent = BookListEvent.GoToInsertBookEvent(book)
+
+
     private fun createBookListDataSource(data: List<Book>) : List<BookListItem> {
         return data
             .asSequence()

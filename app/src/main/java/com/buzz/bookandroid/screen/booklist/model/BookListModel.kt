@@ -20,6 +20,18 @@ internal class BookListModel(
         reducer.reduceRouteToDetailEvent(id)
     }
 
+    suspend fun routeToInsertBookPage(): BookListEvent = withContext(dispatcher) {
+        reducer.reduceRouteToInsertBookEvent(
+            Book(
+                id = "",
+                name = "",
+                author = "",
+                publishYear = "",
+                isbn = ""
+            )
+        )
+    }
+
     private fun handleResponseData(bookListContent: Content<List<Book>>): BookListState {
         return when (bookListContent) {
             is Content.Data -> {
