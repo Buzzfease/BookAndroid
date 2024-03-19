@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/updateBook"
+        app:showAsAction="never"
+        android:title="@string/update_book_information" />
+
+    <item
+        android:id="@+id/deleteBook"
+        app:showAsAction="never"
+        android:title="@string/delete_this_book" />
+</menu>

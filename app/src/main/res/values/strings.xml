@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BookAndroid</string>
+    <string name="all_books">All Books</string>
+    <string name="insert_new_book">Insert New Book</string>
+    <string name="update_book_information">update book information</string>
+    <string name="delete_this_book">delete this book</string>
 </resources>
