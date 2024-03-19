@@ -20,7 +20,7 @@
             android:theme="@style/MyThemeOverlayToolbar">
 
             <TextView
-                android:id="@+id/title"
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -45,7 +45,7 @@
             android:enabled="false"
             android:background="@drawable/selector_primary_button_rect"
             android:textColor="@drawable/selector_primary_button_text_color"
-            android:text="Submit"
+            android:text="@string/submit"
             android:gravity="center"/>
 
     </LinearLayout>

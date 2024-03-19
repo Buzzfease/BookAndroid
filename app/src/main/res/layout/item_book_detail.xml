@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Book ID:"/>
+            android:text="@string/book_id"/>
 
         <TextView
             android:id="@+id/tvId"
@@ -24,8 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="Name"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -39,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Book Name:"/>
+            android:text="@string/book_name"/>
 
         <TextView
             android:id="@+id/tvName"
@@ -47,8 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="Name"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -62,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Author:"/>
+            android:text="@string/author"/>
 
         <TextView
             android:id="@+id/tvAuthor"
@@ -70,8 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="Name"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -85,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="Publish Year"/>
+            android:text="@string/publish_year"/>
 
         <TextView
             android:id="@+id/tvPublishYear"
@@ -93,8 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="Name"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -108,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:text="ISBN:"/>
+            android:text="@string/isbn"/>
 
         <TextView
             android:id="@+id/tvISBN"
@@ -116,8 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:text="Name"/>
+            android:textStyle="bold" />
 
     </LinearLayout>
 

@@ -7,4 +7,18 @@
     <string name="try_again">try again</string>
     <string name="error_hint">There seems to be an error</string>
     <string name="book_detail">Book Detail</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="confirm_delete_content">Are you sure to delete this book?</string>
+    <string name="confirm_positive_button">Confirm</string>
+    <string name="confirm_negative_button">Cancel</string>
+    <string name="delete_failed">Delete failed!</string>
+    <string name="update_success">update success!</string>
+    <string name="insert_success">insert success!</string>
+    <string name="delete_success">delete success!</string>
+    <string name="submit">Submit</string>
+    <string name="book_id">Book ID:</string>
+    <string name="book_name">Book Name:</string>
+    <string name="author">Author:</string>
+    <string name="publish_year">Publish Year:</string>
+    <string name="isbn">ISBN:</string>
 </resources>

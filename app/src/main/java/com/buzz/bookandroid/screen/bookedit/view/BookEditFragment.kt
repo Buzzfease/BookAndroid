@@ -67,6 +67,14 @@ internal class BookEditFragment : BaseFragment<FragmentBookEditBinding, BookEdit
                     }
                 }
             )
+            if (args.editPageParam.isUpdate == true) {
+                tvTitle.text = getString(R.string.update_book_information)
+            } else {
+                tvTitle.text = getString(R.string.insert_new_book)
+            }
+            toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 

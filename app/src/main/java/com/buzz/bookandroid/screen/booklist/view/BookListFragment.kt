@@ -93,13 +93,13 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
                     )
                 }
                 is BookListEvent.BookUpdated -> {
-                    Toast.makeText(requireContext(), "update success!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.update_success), Toast.LENGTH_LONG).show()
                 }
                 is BookListEvent.BookInserted -> {
-                    Toast.makeText(requireContext(), "insert success!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.insert_success), Toast.LENGTH_LONG).show()
                 }
                 is BookListEvent.BookDeleted -> {
-                    Toast.makeText(requireContext(), "delete success!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.delete_success), Toast.LENGTH_LONG).show()
                 }
             }
         }

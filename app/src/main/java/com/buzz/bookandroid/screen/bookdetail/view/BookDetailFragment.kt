@@ -58,6 +58,9 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
                 }
                 false
             }
+            toolbar.setNavigationOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
@@ -89,13 +92,13 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
                 }
                 is BookDetailEvent.ShowDeleteWaringPopupEvent -> {
                     AlertDialog.Builder(requireContext()).apply {
-                        setTitle("Confirm Delete")
-                        setMessage("Are you sure to delete this book?")
-                        setPositiveButton("Confirm",
+                        setTitle(getString(R.string.confirm_delete))
+                        setMessage(getString(R.string.confirm_delete_content))
+                        setPositiveButton(getString(R.string.confirm_positive_button),
                             DialogInterface.OnClickListener { _, _ ->
                                 viewModel.doAction(BookDetailAction.DeleteBook(it.id))
                             })
-                        setNegativeButton("Cancel",
+                        setNegativeButton(getString(R.string.confirm_negative_button),
                             DialogInterface.OnClickListener { dialog, _ ->
                                 dialog.dismiss()
                             })
@@ -107,7 +110,7 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
                     findNavController().popBackStack(R.id.bookListFragment, false)
                 }
                 is BookDetailEvent.DeleteFailedEvent -> {
-                    Toast.makeText(requireContext(), "Delete failed!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.delete_failed), Toast.LENGTH_SHORT).show()
                 }
             }
         }
