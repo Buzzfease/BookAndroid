@@ -15,11 +15,11 @@ class BookAndroidRepository(
         bookAndroidApi.fetchBookList()
     }
 
-    override suspend fun findBookById(id: Int) = asContent {
+    override suspend fun findBookById(id: String) = asContent {
         bookAndroidApi.findBookById(id)
     }
 
-    override suspend fun deleteById(id: Int) = asContent {
+    override suspend fun deleteById(id: String) = asContent {
         bookAndroidApi.deleteById(id)
     }
 

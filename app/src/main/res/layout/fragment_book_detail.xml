@@ -16,6 +16,8 @@
             android:background="@color/purple_700"
             app:titleTextColor="@color/white"
             app:navigationIcon="@mipmap/ic_goback"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:theme="@style/MyThemeOverlayToolbar"
             app:menu="@menu/book_detail_menu">
 
             <TextView

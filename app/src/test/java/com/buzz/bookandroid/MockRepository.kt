@@ -9,6 +9,7 @@ import java.net.SocketTimeoutException
 class MockRepository : NetworkRepository {
 
     var bookListError: Boolean = false
+    var bookDetailError: Boolean = false
 
     override suspend fun fetchBookList(): Content<List<Book>> = asContent {
         throwIfNeeded(bookListError)
@@ -30,19 +31,20 @@ class MockRepository : NetworkRepository {
         )
     }
 
-    private fun throwIfNeeded(
-        condition: Boolean
-    ) {
-        if (condition) {
-            throw SocketTimeoutException()
-        }
+
+
+    override suspend fun findBookById(id: String): Content<Book> = asContent {
+        throwIfNeeded(bookDetailError)
+        Book(
+            id = "1",
+            name = "aaa",
+            author = "bbb",
+            publishYear = "ccc",
+            isbn = "ddd"
+        )
     }
 
-    override suspend fun findBookById(id: Int): Content<Book> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun deleteById(id: Int): Content<Unit> {
+    override suspend fun deleteById(id: String): Content<Unit> {
         TODO("Not yet implemented")
     }
 
@@ -55,7 +57,20 @@ class MockRepository : NetworkRepository {
     }
 }
 
+private fun throwIfNeeded(
+    condition: Boolean
+) {
+    if (condition) {
+        throw SocketTimeoutException()
+    }
+}
+
 internal fun MockRepository.withBookListError(): MockRepository {
     bookListError = true
+    return this
+}
+
+internal fun MockRepository.withBookDetailError(): MockRepository {
+    bookDetailError = true
     return this
 }

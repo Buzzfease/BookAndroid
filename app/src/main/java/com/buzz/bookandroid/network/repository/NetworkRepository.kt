@@ -7,9 +7,9 @@ interface NetworkRepository {
 
     suspend fun fetchBookList() : Content<List<Book>>
 
-    suspend fun findBookById(id: Int) : Content<Book>
+    suspend fun findBookById(id: String) : Content<Book>
 
-    suspend fun deleteById(id: Int) : Content<Unit>
+    suspend fun deleteById(id: String) : Content<Unit>
 
     suspend fun insertBook(book: Book) : Content<Unit>
 

@@ -5,6 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- toolbar菜单样式 -->
+    <style name="MyThemeOverlayToolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <!-- color used by navigation icon and overflow icon -->
+        <item name="colorOnPrimary">@color/white</item>
+    </style>
+
+
     <style name="LoadingDialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>

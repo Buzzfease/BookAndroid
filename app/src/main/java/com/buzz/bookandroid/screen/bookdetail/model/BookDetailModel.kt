@@ -13,7 +13,7 @@ internal class BookDetailModel(
     private val reducer: BookDetailReducer,
 ) {
 
-    suspend fun fetchBookById(id: Int): BookDetailState = withContext(dispatcher) {
+    suspend fun fetchBookById(id: String): BookDetailState = withContext(dispatcher) {
         val bookDetailContent = repository.findBookById(id)
         handleResponseData(bookDetailContent)
     }

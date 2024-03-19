@@ -3,9 +3,11 @@ package com.buzz.bookandroid.screen.bookdetail.view
 import android.content.Context
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.buzz.bookandroid.common.arch.view.BaseFragment
 import com.buzz.bookandroid.databinding.FragmentBookDetailBinding
 import com.buzz.bookandroid.di.AppComponentHolder
+import com.buzz.bookandroid.screen.bookdetail.model.BookDetailAction
 import com.buzz.bookandroid.screen.bookdetail.model.BookDetailState
 import com.buzz.bookandroid.screen.bookdetail.model.BookDetailViewModel
 import com.buzz.bookandroid.screen.bookdetail.view.render.BookDetailRender
@@ -23,6 +25,8 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
 
     override val viewModel by viewModels<BookDetailViewModel> { viewModelFactory }
 
+    private val args: BookDetailFragmentArgs by navArgs()
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AppComponentHolder.getComponent().bookDetailComponent().create().inject(this)
@@ -32,7 +36,7 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
         with(binding) {
             bookDetailRender.init(recyclerView = recyclerView,
                 onRetryClick = {
-                    //viewModel.doAction(BookDetailAction.LoadData)
+                    viewModel.doAction(BookDetailAction.LoadData(args.id))
                 }
             )
         }
@@ -56,7 +60,7 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
 
         }
 
-        //viewModel.doAction(BookListAction.LoadData)
+        viewModel.doAction(BookDetailAction.LoadData(args.id))
     }
 
 }

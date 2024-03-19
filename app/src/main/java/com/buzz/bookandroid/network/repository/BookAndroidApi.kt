@@ -15,10 +15,10 @@ interface BookAndroidApi {
     suspend fun fetchBookList(): List<Book>
 
     @GET("/books/{id}")
-    suspend fun findBookById(@Path("id", encoded = true) id: Int): Book
+    suspend fun findBookById(@Path("id", encoded = true) id: String): Book
 
     @GET("/books/delete/{id}")
-    suspend fun deleteById(@Path("id", encoded = true) id: Int)
+    suspend fun deleteById(@Path("id", encoded = true) id: String)
 
     @POST("/books/insert")
     suspend fun insertBook(@Body book: Book)

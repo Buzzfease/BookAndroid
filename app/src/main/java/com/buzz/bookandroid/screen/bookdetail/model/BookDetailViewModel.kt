@@ -16,7 +16,7 @@ internal class BookDetailViewModel @Inject constructor(
         }
     }
 
-    private fun loadData(currentState: BookDetailState?, id: Int) {
+    private fun loadData(currentState: BookDetailState?, id: String) {
         if (currentState !is BookDetailState.Data) {
             viewModelScope.launch {
                 emitState(initialState)
