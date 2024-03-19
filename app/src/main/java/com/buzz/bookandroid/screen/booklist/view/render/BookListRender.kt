@@ -1,7 +1,5 @@
 package com.buzz.bookandroid.screen.booklist.view.render
 
-import android.widget.LinearLayout
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.buzz.bookandroid.adapterdelegate.adapter.DelegateAdapter
@@ -40,7 +38,6 @@ class BookListRender @Inject constructor() : BaseRenderer {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = delegateAdapter
-            addItemDecoration(DividerItemDecoration(context, LinearLayout.HORIZONTAL))
         }
     }
 

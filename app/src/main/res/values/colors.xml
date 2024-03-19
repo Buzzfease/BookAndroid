@@ -14,4 +14,5 @@
     <color name="textColorDeepBlack">#252525</color>
     <color name="colorAccent">#FFFFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="lineColor">#DBDBDB</color>
 </resources>

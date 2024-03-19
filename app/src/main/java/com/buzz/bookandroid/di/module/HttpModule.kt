@@ -2,6 +2,7 @@ package com.buzz.bookandroid.di.module
 
 import com.buzz.bookandroid.network.repository.BookAndroidApi
 import com.buzz.bookandroid.network.repository.BookAndroidRepository
+import com.buzz.bookandroid.network.repository.NetworkRepository
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -49,7 +50,7 @@ class HttpModule {
     @Singleton
     fun providesRepository(
         retrofitService: BookAndroidApi,
-    ): BookAndroidRepository = BookAndroidRepository(retrofitService)
+    ): NetworkRepository = BookAndroidRepository(retrofitService)
 
     @Provides
     fun providesCoroutineDispatcher(): CoroutineDispatcher = Dispatchers.IO

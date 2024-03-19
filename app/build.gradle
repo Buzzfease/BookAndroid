@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-parcelize'
+    id 'de.mannodermaus.android-junit5'
 }
 
 android {
@@ -86,6 +87,7 @@ dependencies {
     testImplementation "org.mockito.kotlin:mockito-kotlin:$mockitoVersion"
     testImplementation "androidx.arch.core:core-testing:$androidxCoreTestingVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$testCoroutinesVersion"
+    testImplementation "com.google.truth:truth:$truthVersion"
     // Loading
     implementation "com.facebook.shimmer:shimmer:$loadingViewVersion"
 }

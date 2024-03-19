@@ -3,6 +3,7 @@ package com.buzz.bookandroid.screen.booklist.di
 import androidx.lifecycle.ViewModel
 import com.buzz.bookandroid.di.module.ViewModelKey
 import com.buzz.bookandroid.network.repository.BookAndroidRepository
+import com.buzz.bookandroid.network.repository.NetworkRepository
 import com.buzz.bookandroid.screen.booklist.model.BookListModel
 import com.buzz.bookandroid.screen.booklist.model.BookListReducer
 import com.buzz.bookandroid.screen.booklist.model.BookListState
@@ -26,7 +27,7 @@ internal interface BookListModule {
 
         @Provides
         fun providesBookListModel(
-            repository: BookAndroidRepository,
+            repository: NetworkRepository,
             dispatcher: CoroutineDispatcher,
             reducer: BookListReducer
         ): BookListModel = BookListModel(

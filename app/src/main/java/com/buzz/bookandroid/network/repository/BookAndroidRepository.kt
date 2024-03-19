@@ -9,25 +9,25 @@ import com.buzz.bookandroid.network.wrapper.asContent
  */
 class BookAndroidRepository(
     private val bookAndroidApi: BookAndroidApi
-) {
+): NetworkRepository {
 
-    suspend fun fetchBookList() = asContent {
+    override suspend fun fetchBookList() = asContent {
         bookAndroidApi.fetchBookList()
     }
 
-    suspend fun findBookById(id: Int) = asContent {
+    override suspend fun findBookById(id: Int) = asContent {
         bookAndroidApi.findBookById(id)
     }
 
-    suspend fun deleteById(id: Int) = asContent {
+    override suspend fun deleteById(id: Int) = asContent {
         bookAndroidApi.deleteById(id)
     }
 
-    suspend fun insertBook(book: Book) = asContent {
+    override suspend fun insertBook(book: Book) = asContent {
         bookAndroidApi.insertBook(book)
     }
 
-    suspend fun updateBook(book: Book) = asContent {
+    override suspend fun updateBook(book: Book) = asContent {
         bookAndroidApi.updateBook(book)
     }
 }

@@ -59,6 +59,7 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
         viewModel.event.observe(viewLifecycleOwner) {
 
         }
+        viewModel.doAction(BookListAction.LoadData)
     }
 
 }
