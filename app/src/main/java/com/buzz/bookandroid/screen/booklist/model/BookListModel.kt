@@ -1,7 +1,6 @@
 package com.buzz.bookandroid.screen.booklist.model
 
 import com.buzz.bookandroid.network.model.Book
-import com.buzz.bookandroid.network.repository.BookAndroidRepository
 import com.buzz.bookandroid.network.repository.NetworkRepository
 import com.buzz.bookandroid.network.wrapper.Content
 import kotlinx.coroutines.CoroutineDispatcher
@@ -12,9 +11,13 @@ internal class BookListModel(
     private val dispatcher: CoroutineDispatcher,
     private val reducer: BookListReducer,
 ) {
-    suspend fun fetchPaymentListItems(): BookListState = withContext(dispatcher) {
-        val paymentListContent = repository.fetchBookList()
-        handleResponseData(paymentListContent)
+    suspend fun fetchBookList(): BookListState = withContext(dispatcher) {
+        val bookListContent = repository.fetchBookList()
+        handleResponseData(bookListContent)
+    }
+
+    suspend fun routeToDetail(id: String): BookListEvent = withContext(dispatcher) {
+        reducer.reduceRouteToDetailEvent(id)
     }
 
     private fun handleResponseData(bookListContent: Content<List<Book>>): BookListState {

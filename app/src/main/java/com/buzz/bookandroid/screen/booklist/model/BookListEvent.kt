@@ -13,7 +13,7 @@ internal sealed class BookListEvent : ViewEvent {
 
     @Keep
     data class GoToDetailEvent(
-        val data: Objects
+        val data: String
     ) : BookListEvent()
 
 }

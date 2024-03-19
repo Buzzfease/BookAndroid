@@ -14,14 +14,14 @@ class MockRepository : NetworkRepository {
         throwIfNeeded(bookListError)
         listOf(
             Book(
-                id = 1,
+                id = "1",
                 name = "aaa",
                 author = "bbb",
                 publishYear = "ccc",
                 isbn = "ddd"
             ),
             Book(
-                id = 2,
+                id = "2",
                 name = "aaaAAA",
                 author = "bbbBBB",
                 publishYear = "cccCCC",

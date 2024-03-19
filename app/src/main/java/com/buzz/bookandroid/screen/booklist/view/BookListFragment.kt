@@ -3,10 +3,12 @@ package com.buzz.bookandroid.screen.booklist.view
 import android.content.Context
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.buzz.bookandroid.common.arch.view.BaseFragment
 import com.buzz.bookandroid.databinding.FragmentBookListBinding
 import com.buzz.bookandroid.di.AppComponentHolder
 import com.buzz.bookandroid.screen.booklist.model.BookListAction
+import com.buzz.bookandroid.screen.booklist.model.BookListEvent
 import com.buzz.bookandroid.screen.booklist.model.BookListState
 import com.buzz.bookandroid.screen.booklist.model.BookListViewModel
 import com.buzz.bookandroid.screen.booklist.view.render.BookListRender
@@ -57,7 +59,15 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
             }
         }
         viewModel.event.observe(viewLifecycleOwner) {
-
+            when (it) {
+                is BookListEvent.GoToDetailEvent -> {
+                    findNavController().navigate(
+                        BookListFragmentDirections.actionBookListFragmentToBookDetailsFragment(
+                            it.data
+                        )
+                    )
+                }
+            }
         }
         viewModel.doAction(BookListAction.LoadData)
     }

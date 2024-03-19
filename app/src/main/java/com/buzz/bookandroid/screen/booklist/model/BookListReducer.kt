@@ -18,13 +18,15 @@ internal class BookListReducer @Inject constructor() {
 
     fun reduceBookListError(): BookListState = BookListState.Error
 
+    fun reduceRouteToDetailEvent(id: String): BookListEvent = BookListEvent.GoToDetailEvent(id)
+
     private fun createBookListDataSource(data: List<Book>) : List<BookListItem> {
         return data
             .asSequence()
             .sortedBy { it.id }
             .map {
                 BookListItem(
-                    id = it.id.toString(),
+                    id = it.id,
                     name = it.name ?: "",
                     author = it.author ?: "",
                     publishYear = it.publishYear ?: "",
