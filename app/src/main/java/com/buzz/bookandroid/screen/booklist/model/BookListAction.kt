@@ -8,4 +8,6 @@ sealed class BookListAction : Action {
 
     @Keep
     data class OnBookItemClick(val id: String) : BookListAction()
+
+
 }

@@ -1,6 +1,7 @@
 package com.buzz.bookandroid.screen.booklist.model
 
 import com.buzz.bookandroid.network.model.Book
+import com.buzz.bookandroid.widget.booklist.BookListItem
 import javax.inject.Inject
 
 
@@ -12,18 +13,23 @@ internal class BookListReducer @Inject constructor() {
 
     fun reduceBookList(
         data: List<Book>
-    ): BookListState {
-        return BookListState.Data(dataSource = listOf())
+    ): BookListState = BookListState.Data(dataSource = createBookListDataSource(data))
+
+
+    fun reduceBookListError(): BookListState = BookListState.Error
+
+    private fun createBookListDataSource(data: List<Book>) : List<BookListItem> {
+        return data
+            .asSequence()
+            .sortedBy { it.id }
+            .map {
+                BookListItem(
+                    id = it.id.toString(),
+                    name = it.name ?: "",
+                    author = it.author ?: "",
+                    publishYear = it.publishYear ?: "",
+                    isbn = it.isbn ?: ""
+                )
+            }.toList()
     }
-
-
-    fun reduceEmptyList(): BookListState {
-        return BookListState.Empty
-    }
-
-
-    fun reduceBookListNetworkError(): BookListState {
-        return BookListState.SummaryNetworkError
-    }
-
 }

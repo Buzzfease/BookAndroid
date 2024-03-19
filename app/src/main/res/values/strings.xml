@@ -4,4 +4,6 @@
     <string name="insert_new_book">Insert New Book</string>
     <string name="update_book_information">update book information</string>
     <string name="delete_this_book">delete this book</string>
+    <string name="try_again">try again</string>
+    <string name="error_hint">There seems to be an error</string>
 </resources>

@@ -19,14 +19,10 @@ internal class BookListModel(
     private fun handleResponseData(bookListContent: Content<List<Book>>): BookListState {
         return when (bookListContent) {
             is Content.Data -> {
-                if (bookListContent.data.isEmpty()) {
-                    reducer.reduceEmptyList()
-                } else {
-                    reducer.reduceBookList(bookListContent.data)
-                }
+                reducer.reduceBookList(bookListContent.data)
             }
             is Content.Error -> {
-                reducer.reduceBookListNetworkError()
+                reducer.reduceBookListError()
             }
         }
     }

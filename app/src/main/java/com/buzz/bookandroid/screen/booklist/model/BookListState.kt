@@ -1,7 +1,7 @@
 package com.buzz.bookandroid.screen.booklist.model
 
 import com.buzz.bookandroid.common.arch.model.ViewState
-import com.buzz.bookandroid.widget.BookListItem
+import com.buzz.bookandroid.widget.booklist.BookListItem
 
 internal sealed class BookListState : ViewState {
 
@@ -11,10 +11,5 @@ internal sealed class BookListState : ViewState {
 
     object Loading : BookListState()
 
-    object Empty : BookListState()
-
-    object SummaryCommonError: BookListState()
-
-    object SummaryNetworkError: BookListState()
-
+    object Error : BookListState()
 }
