@@ -14,6 +14,10 @@
             android:id="@+id/action_bookListFragment_to_bookDetailsFragment"
             app:destination="@id/bookDetailsFragment" />
 
+        <action
+            android:id="@+id/action_bookListFragment_to_bookEditFragment"
+            app:destination="@id/bookEditFragment" />
+
 
     </fragment>
 
@@ -26,6 +30,25 @@
             android:name="id"
             app:argType="string"
             android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_bookDetailsFragment_to_bookEditFragment"
+            app:destination="@id/bookEditFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/bookEditFragment"
+        android:name="com.buzz.bookandroid.screen.bookedit.view.BookEditFragment"
+        tools:layout="@layout/fragment_book_edit">
+
+        <argument
+            android:name="editPageParam"
+            app:argType="com.buzz.bookandroid.common.wrapper.EditPageParamWrapper" />
+
+        <action
+            android:id="@+id/action_bookEditFragment_to_bookListFragment"
+            app:destination="@id/bookListFragment" />
 
     </fragment>
 

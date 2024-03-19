@@ -3,11 +3,15 @@ package com.buzz.bookandroid.screen.bookdetail.view
 import android.content.Context
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.buzz.bookandroid.R
 import com.buzz.bookandroid.common.arch.view.BaseFragment
+import com.buzz.bookandroid.common.wrapper.EditPageParamWrapper
 import com.buzz.bookandroid.databinding.FragmentBookDetailBinding
 import com.buzz.bookandroid.di.AppComponentHolder
 import com.buzz.bookandroid.screen.bookdetail.model.BookDetailAction
+import com.buzz.bookandroid.screen.bookdetail.model.BookDetailEvent
 import com.buzz.bookandroid.screen.bookdetail.model.BookDetailState
 import com.buzz.bookandroid.screen.bookdetail.model.BookDetailViewModel
 import com.buzz.bookandroid.screen.bookdetail.view.render.BookDetailRender
@@ -39,6 +43,14 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
                     viewModel.doAction(BookDetailAction.LoadData(args.id))
                 }
             )
+            toolbar.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.updateBook -> {
+                        viewModel.doAction(BookDetailAction.OnBookUpdateMenuClick)
+                    }
+                }
+                false
+            }
         }
     }
 
@@ -57,7 +69,18 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
             }
         }
         viewModel.event.observe(viewLifecycleOwner) {
-
+            when (it) {
+                is BookDetailEvent.GoToUpdateBookEvent -> {
+                    findNavController().navigate(
+                        BookDetailFragmentDirections.actionBookDetailsFragmentToBookEditFragment(
+                            EditPageParamWrapper(
+                                isUpdate = true,
+                                it.book
+                            )
+                        )
+                    )
+                }
+            }
         }
 
         viewModel.doAction(BookDetailAction.LoadData(args.id))

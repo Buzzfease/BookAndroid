@@ -13,6 +13,8 @@ internal class BookDetailModel(
     private val reducer: BookDetailReducer,
 ) {
 
+    private lateinit var book: Book
+
     suspend fun fetchBookById(id: String): BookDetailState = withContext(dispatcher) {
         val bookDetailContent = repository.findBookById(id)
         handleResponseData(bookDetailContent)
@@ -21,11 +23,16 @@ internal class BookDetailModel(
     private fun handleResponseData(bookDetailContent: Content<Book>): BookDetailState {
         return when (bookDetailContent) {
             is Content.Data -> {
+                book = bookDetailContent.data
                 reducer.reduceBookDetail(bookDetailContent.data)
             }
             is Content.Error -> {
                 reducer.reduceBookDetailError()
             }
         }
+    }
+
+    suspend fun routeToUpdateBookPage(): BookDetailEvent = withContext(dispatcher) {
+        reducer.reduceRouteToUpdateBookEvent(book)
     }
 }

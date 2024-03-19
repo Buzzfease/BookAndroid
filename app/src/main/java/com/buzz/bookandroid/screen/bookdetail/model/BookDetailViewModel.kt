@@ -13,6 +13,7 @@ internal class BookDetailViewModel @Inject constructor(
     override fun onAction(action: BookDetailAction, currentState: BookDetailState?) {
         when (action) {
             is BookDetailAction.LoadData -> loadData(currentState, action.id)
+            is BookDetailAction.OnBookUpdateMenuClick -> routToUpdateBookPage()
         }
     }
 
@@ -24,6 +25,12 @@ internal class BookDetailViewModel @Inject constructor(
                     emitState(this)
                 }
             }
+        }
+    }
+
+    private fun routToUpdateBookPage() {
+        viewModelScope.launch {
+            emitEvent(model.routeToUpdateBookPage())
         }
     }
 }

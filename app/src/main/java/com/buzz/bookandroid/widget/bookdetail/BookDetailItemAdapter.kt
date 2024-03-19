@@ -26,7 +26,7 @@ internal class BookDetailItemAdapter : AdapterDelegate<BookDetailItem> {
     }
 
     companion object {
-        val VIEW_TYPE = R.layout.item_book_list
+        val VIEW_TYPE = R.layout.item_book_detail
     }
 }
 

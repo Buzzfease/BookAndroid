@@ -6,6 +6,8 @@ import com.buzz.bookandroid.common.arch.intent.Action
 sealed class BookListAction : Action {
     object LoadData : BookListAction()
 
+    object OnBookUpdated : BookListAction()
+
     @Keep
     data class OnBookItemClick(val id: String) : BookListAction()
 

@@ -13,6 +13,7 @@ internal class BookListViewModel @Inject constructor(
     override fun onAction(action: BookListAction, currentState: BookListState?) {
         when (action) {
             BookListAction.LoadData -> loadData(currentState)
+            BookListAction.OnBookUpdated -> onBookUpdated()
             is BookListAction.OnBookItemClick -> routeToDetail(action.id)
         }
     }
@@ -31,6 +32,14 @@ internal class BookListViewModel @Inject constructor(
     private fun routeToDetail(id: String) {
         viewModelScope.launch {
             emitEvent(model.routeToDetail(id))
+        }
+    }
+
+    private fun onBookUpdated() {
+        viewModelScope.launch {
+            emitEvent(BookListEvent.BookUpdated)
+            emitState(initialState)
+            emitState(model.fetchBookList())
         }
     }
 }

@@ -5,6 +5,7 @@ import com.buzz.bookandroid.di.module.HttpModule
 import com.buzz.bookandroid.di.module.ViewModelBuilderModule
 import com.buzz.bookandroid.screen.MainComponent
 import com.buzz.bookandroid.screen.bookdetail.di.BookDetailComponent
+import com.buzz.bookandroid.screen.bookedit.di.BookEditComponent
 import com.buzz.bookandroid.screen.booklist.di.BookListComponent
 import dagger.BindsInstance
 import dagger.Component
@@ -31,5 +32,7 @@ internal interface AppComponent {
     fun bookListComponent(): BookListComponent.Factory
 
     fun bookDetailComponent(): BookDetailComponent.Factory
+
+    fun bookEditComponent(): BookEditComponent.Factory
 
 }

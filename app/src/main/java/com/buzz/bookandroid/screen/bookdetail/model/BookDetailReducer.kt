@@ -1,9 +1,7 @@
 package com.buzz.bookandroid.screen.bookdetail.model
 
 import com.buzz.bookandroid.network.model.Book
-import com.buzz.bookandroid.screen.booklist.model.BookListState
 import com.buzz.bookandroid.widget.bookdetail.BookDetailItem
-import com.buzz.bookandroid.widget.booklist.BookListItem
 import javax.inject.Inject
 
 internal class BookDetailReducer @Inject constructor() {
@@ -27,4 +25,7 @@ internal class BookDetailReducer @Inject constructor() {
             )
         )
     }
+
+    fun reduceRouteToUpdateBookEvent(book: Book): BookDetailEvent = BookDetailEvent.GoToUpdateBookEvent(book)
+
 }

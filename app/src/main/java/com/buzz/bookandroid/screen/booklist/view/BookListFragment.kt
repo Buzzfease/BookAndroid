@@ -1,12 +1,16 @@
 package com.buzz.bookandroid.screen.booklist.view
 
 import android.content.Context
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.buzz.bookandroid.R
 import com.buzz.bookandroid.common.arch.view.BaseFragment
+import com.buzz.bookandroid.common.extension.onNavigationResult
 import com.buzz.bookandroid.databinding.FragmentBookListBinding
 import com.buzz.bookandroid.di.AppComponentHolder
+import com.buzz.bookandroid.screen.bookedit.view.BookEditFragment.Companion.RESULT_UPDATED
 import com.buzz.bookandroid.screen.booklist.model.BookListAction
 import com.buzz.bookandroid.screen.booklist.model.BookListEvent
 import com.buzz.bookandroid.screen.booklist.model.BookListState
@@ -67,8 +71,22 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
                         )
                     )
                 }
+                is BookListEvent.BookUpdated -> {
+                    Toast.makeText(requireContext(), "update success!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
+
+        // result update
+        onNavigationResult(
+            R.id.bookListFragment,
+            RESULT_UPDATED
+        ) { done: Boolean ->
+            if (done) {
+                viewModel.doAction(BookListAction.OnBookUpdated)
+            }
+        }
+
         viewModel.doAction(BookListAction.LoadData)
     }
 
