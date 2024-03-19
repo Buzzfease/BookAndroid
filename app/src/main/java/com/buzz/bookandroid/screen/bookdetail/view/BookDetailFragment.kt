@@ -1,12 +1,16 @@
 package com.buzz.bookandroid.screen.bookdetail.view
 
+import android.app.AlertDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.buzz.bookandroid.R
 import com.buzz.bookandroid.common.arch.view.BaseFragment
+import com.buzz.bookandroid.common.extension.setNavigationResult
 import com.buzz.bookandroid.common.wrapper.EditPageParamWrapper
 import com.buzz.bookandroid.databinding.FragmentBookDetailBinding
 import com.buzz.bookandroid.di.AppComponentHolder
@@ -48,6 +52,9 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
                     R.id.updateBook -> {
                         viewModel.doAction(BookDetailAction.OnBookUpdateMenuClick)
                     }
+                    R.id.deleteBook -> {
+                        viewModel.doAction(BookDetailAction.OnBookDeleteMenuClick)
+                    }
                 }
                 false
             }
@@ -80,10 +87,36 @@ internal class BookDetailFragment : BaseFragment<FragmentBookDetailBinding, Book
                         )
                     )
                 }
+                is BookDetailEvent.ShowDeleteWaringPopupEvent -> {
+                    AlertDialog.Builder(requireContext()).apply {
+                        setTitle("Confirm Delete")
+                        setMessage("Are you sure to delete this book?")
+                        setPositiveButton("Confirm",
+                            DialogInterface.OnClickListener { _, _ ->
+                                viewModel.doAction(BookDetailAction.DeleteBook(it.id))
+                            })
+                        setNegativeButton("Cancel",
+                            DialogInterface.OnClickListener { dialog, _ ->
+                                dialog.dismiss()
+                            })
+                        create().show()
+                    }
+                }
+                is BookDetailEvent.DeleteSuccessEvent -> {
+                    setNavigationResult(R.id.bookListFragment, RESULT_DELETED, true)
+                    findNavController().popBackStack(R.id.bookListFragment, false)
+                }
+                is BookDetailEvent.DeleteFailedEvent -> {
+                    Toast.makeText(requireContext(), "Delete failed!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
         viewModel.doAction(BookDetailAction.LoadData(args.id))
+    }
+
+    companion object {
+        const val RESULT_DELETED = "RESULT_DELETED"
     }
 
 }

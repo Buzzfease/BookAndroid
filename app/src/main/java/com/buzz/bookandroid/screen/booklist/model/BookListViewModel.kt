@@ -15,6 +15,7 @@ internal class BookListViewModel @Inject constructor(
             BookListAction.LoadData -> loadData(currentState)
             BookListAction.OnBookUpdated -> onBookUpdated()
             BookListAction.OnBookInserted -> onBookInserted()
+            BookListAction.OnBookDeleted -> onBookDeleted()
             is BookListAction.OnBookItemClick -> routeToDetail(action.id)
             is BookListAction.OnBookInsertMenuClick -> routToInsertBookPage()
         }
@@ -48,6 +49,14 @@ internal class BookListViewModel @Inject constructor(
     private fun onBookInserted() {
         viewModelScope.launch {
             emitEvent(BookListEvent.BookInserted)
+            emitState(initialState)
+            emitState(model.fetchBookList())
+        }
+    }
+
+    private fun onBookDeleted() {
+        viewModelScope.launch {
+            emitEvent(BookListEvent.BookDeleted)
             emitState(initialState)
             emitState(model.fetchBookList())
         }

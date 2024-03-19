@@ -11,4 +11,13 @@ internal sealed class BookDetailEvent : ViewEvent {
         val book: Book,
     ) : BookDetailEvent()
 
+    @Keep
+    data class ShowDeleteWaringPopupEvent(
+        val id: String,
+    ) : BookDetailEvent()
+
+    object DeleteSuccessEvent: BookDetailEvent()
+
+    object DeleteFailedEvent: BookDetailEvent()
+
 }

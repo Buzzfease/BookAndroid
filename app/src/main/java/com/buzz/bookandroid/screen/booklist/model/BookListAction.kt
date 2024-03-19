@@ -10,6 +10,8 @@ sealed class BookListAction : Action {
 
     object OnBookInserted : BookListAction()
 
+    object OnBookDeleted : BookListAction()
+
     @Keep
     object OnBookInsertMenuClick : BookListAction()
 

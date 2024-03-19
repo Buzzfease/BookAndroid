@@ -28,4 +28,10 @@ internal class BookDetailReducer @Inject constructor() {
 
     fun reduceRouteToUpdateBookEvent(book: Book): BookDetailEvent = BookDetailEvent.GoToUpdateBookEvent(book)
 
+    fun reduceShowDeleteWaringPopupEvent(id: String): BookDetailEvent = BookDetailEvent.ShowDeleteWaringPopupEvent(id)
+
+    fun reduceDeleteSuccessEvent(): BookDetailEvent = BookDetailEvent.DeleteSuccessEvent
+
+    fun reduceDeleteFailedEvent():  BookDetailEvent = BookDetailEvent.DeleteSuccessEvent
+
 }

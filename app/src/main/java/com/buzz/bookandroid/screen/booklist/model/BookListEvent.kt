@@ -10,6 +10,8 @@ internal sealed class BookListEvent : ViewEvent {
 
     object BookInserted : BookListEvent()
 
+    object BookDeleted : BookListEvent()
+
     @Keep
     data class GoToDetailEvent(
         val data: String

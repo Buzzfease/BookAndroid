@@ -11,6 +11,7 @@ import com.buzz.bookandroid.common.extension.onNavigationResult
 import com.buzz.bookandroid.common.wrapper.EditPageParamWrapper
 import com.buzz.bookandroid.databinding.FragmentBookListBinding
 import com.buzz.bookandroid.di.AppComponentHolder
+import com.buzz.bookandroid.screen.bookdetail.view.BookDetailFragment.Companion.RESULT_DELETED
 import com.buzz.bookandroid.screen.bookedit.view.BookEditFragment.Companion.RESULT_INSERTED
 import com.buzz.bookandroid.screen.bookedit.view.BookEditFragment.Companion.RESULT_UPDATED
 import com.buzz.bookandroid.screen.booklist.model.BookListAction
@@ -97,10 +98,13 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
                 is BookListEvent.BookInserted -> {
                     Toast.makeText(requireContext(), "insert success!", Toast.LENGTH_SHORT).show()
                 }
+                is BookListEvent.BookDeleted -> {
+                    Toast.makeText(requireContext(), "delete success!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
-        // result update
+        // book updated
         onNavigationResult(
             R.id.bookListFragment,
             RESULT_UPDATED
@@ -110,12 +114,23 @@ internal class BookListFragment : BaseFragment<FragmentBookListBinding, BookList
             }
         }
 
+        // book inserted
         onNavigationResult(
             R.id.bookListFragment,
             RESULT_INSERTED
         ) { done: Boolean ->
             if (done) {
                 viewModel.doAction(BookListAction.OnBookInserted)
+            }
+        }
+
+        // book deleted
+        onNavigationResult(
+            R.id.bookListFragment,
+            RESULT_DELETED
+        ) { done: Boolean ->
+            if (done) {
+                viewModel.doAction(BookListAction.OnBookDeleted)
             }
         }
 

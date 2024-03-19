@@ -8,4 +8,9 @@ sealed class BookDetailAction : Action {
     data class LoadData(val id: String) : BookDetailAction()
     @Keep
     object OnBookUpdateMenuClick : BookDetailAction()
+    @Keep
+    object OnBookDeleteMenuClick : BookDetailAction()
+
+    @Keep
+    data class DeleteBook(val id: String) : BookDetailAction()
 }

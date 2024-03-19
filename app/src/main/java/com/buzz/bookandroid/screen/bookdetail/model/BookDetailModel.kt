@@ -35,4 +35,19 @@ internal class BookDetailModel(
     suspend fun routeToUpdateBookPage(): BookDetailEvent = withContext(dispatcher) {
         reducer.reduceRouteToUpdateBookEvent(book)
     }
+
+    suspend fun showDeleteWaringPopup(): BookDetailEvent = withContext(dispatcher) {
+        reducer.reduceShowDeleteWaringPopupEvent(book.id)
+    }
+
+    suspend fun deleteBook(id: String): BookDetailEvent {
+        return when (repository.deleteById(id)) {
+            is Content.Data -> {
+                reducer.reduceDeleteSuccessEvent()
+            }
+            is Content.Error -> {
+                reducer.reduceDeleteFailedEvent()
+            }
+        }
+    }
 }

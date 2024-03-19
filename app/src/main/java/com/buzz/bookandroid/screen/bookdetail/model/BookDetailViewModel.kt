@@ -14,6 +14,8 @@ internal class BookDetailViewModel @Inject constructor(
         when (action) {
             is BookDetailAction.LoadData -> loadData(currentState, action.id)
             is BookDetailAction.OnBookUpdateMenuClick -> routToUpdateBookPage()
+            is BookDetailAction.OnBookDeleteMenuClick -> showDeleteWaringPopup()
+            is BookDetailAction.DeleteBook -> deleteBook(action.id)
         }
     }
 
@@ -31,6 +33,19 @@ internal class BookDetailViewModel @Inject constructor(
     private fun routToUpdateBookPage() {
         viewModelScope.launch {
             emitEvent(model.routeToUpdateBookPage())
+        }
+    }
+
+    private fun showDeleteWaringPopup() {
+        viewModelScope.launch {
+            emitEvent(model.showDeleteWaringPopup())
+        }
+    }
+
+    private fun deleteBook(id: String) {
+        viewModelScope.launch {
+            emitState(initialState)
+            emitEvent(model.deleteBook(id))
         }
     }
 }
